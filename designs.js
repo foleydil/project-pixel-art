@@ -1,9 +1,9 @@
 // Select color input
-let color = $('colorPicker');
+let color = $('#colorPicker').val();
 
 // Select size input
-let gridWidth = $('#inputWeight');
-let gridHeight = $('#inputHeight');
+let gridWidth = $('#inputWeight').val();
+let gridHeight = $('#inputHeight').val();
 
 //Takes user input for grid dimensions as arguments,
 //and adds table of that size to body of index.html
