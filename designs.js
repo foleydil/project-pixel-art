@@ -12,4 +12,3 @@ function makeGrid(gridHeight, gridWidth) {
 }
 
 // When size is submitted by the user, call makeGrid
-$('#sizePicker').submit(makeGrid());
