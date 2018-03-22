@@ -2,27 +2,32 @@
 let color = $('#colorPicker').val();
 
 // Select size input
-let gridWidth = 0;
-let gridHeight = 0;
+//set user input to gridCols and gridRows vars
+let gridCols = $('#inputWeight').val();;
+let gridRows = $('#inputHeight').val();
 
 //Takes user input for grid dimensions as arguments,
 //and adds table of that size to body of index.html
-function makeGrid(gridHeight, gridWidth) {
+function makeGrid(gridRows, gridCols) {
   //establish HTML string to be later appended to body of page
   //will append appropriate grid HTML based on user input
   let gridHTML = "";
 
-  //set user input to gridWidth and gridHeight vars
-  $(sizePicker).submit(function() {
-    let gridWidth = $('#inputWeight').val();
-    let gridHeight = $('#inputHeight').val();
-  });
+  //create grid
+  for (var r = 0; r < gridRows; r++) {
+    gridHTML += "<tr>";
+    for (var c = 0; c < gridCols; c++) {
+      gridHTML += "<td></td>";
+    };
+    gridHTML += "</tr>\n";
+  };
 
-  for (var i = 0; i < gridWidth.length; i++) {
-    array[i]
-  }
-
-  $('body').append(gridHTML);
+  //add grid to body of index.html
+  $('#pixelCanvas').append(gridHTML);
 }
 
+
 // When size is submitted by the user, call makeGrid
+$(sizePicker).submit(function() {
+  makeGrid(gridRows, gridCols)
+});
