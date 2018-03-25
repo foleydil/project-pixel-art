@@ -1,7 +1,4 @@
-// Select color input
-let color = $('#colorPicker').val();
 
-// Select size input
 // When size is submitted by the user, call makeGrid
 $('#sizePicker').submit(function(event) {
   //set user input to gridCols and gridRows vars
@@ -12,17 +9,24 @@ $('#sizePicker').submit(function(event) {
   makeGrid(gridRows, gridCols)
 });
 
-//Takes user input for grid dimensions as arguments,
-//and adds table of that size to body of index.html
+// When color is submitted by the user, call set color var
+$('#colorPicker').submit(function() {
+  let color = $('#colorPicker').val();
+  console.log("color selected: " + color);
+  return color;
+});
+
+/*Takes user input for grid dimensions as arguments,
+appends table to body of index.html*/
 function makeGrid(gridRows, gridCols) {
   //clear existing grid
   $('#pixelCanvas').empty();
-  //establish HTML string for grid, to later append to body of page
+  //establish string of grid html to later append to body of page
   let gridHTML = "";
   //create grid
-  for (var r = 0; r < gridRows; r++) {
+  for (let r = 0; r < gridRows; r++) {
     gridHTML += "<tr>";
-    for (var c = 0; c < gridCols; c++) {
+    for (let c = 0; c < gridCols; c++) {
       gridHTML += "<td></td>";
     };
     gridHTML += "</tr>\n";
@@ -31,5 +35,9 @@ function makeGrid(gridRows, gridCols) {
   $('#pixelCanvas').append(gridHTML);
 }
 
-//TODO set up listener for every 'td', change color to color var
-//when user clicks in a td
+
+//listener for every 'td', change td color to colorPicker assignment
+$('td').click(function() {
+  console.log("cell selected, color chosen: " + color);
+  this.fill(color);
+});
