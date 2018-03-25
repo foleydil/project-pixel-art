@@ -3,9 +3,10 @@ let color = $('#colorPicker').val();
 
 // Select size input
 // When size is submitted by the user, call makeGrid
-$('#sizePicker').submit(function() {
+$('#sizePicker').submit(function(event) {
   //set user input to gridCols and gridRows vars
-  //TODO supress default action of refreshing page upon submit
+  //supress default action of form submission, to avoid page reloading
+  event.preventDefault();
   let gridCols = $('#inputWeight').val();
   let gridRows = $('#inputHeight').val();
   makeGrid(gridRows, gridCols)
@@ -14,6 +15,8 @@ $('#sizePicker').submit(function() {
 //Takes user input for grid dimensions as arguments,
 //and adds table of that size to body of index.html
 function makeGrid(gridRows, gridCols) {
+  //clear existing grid
+  $('#pixelCanvas').empty();
   //establish HTML string for grid, to later append to body of page
   let gridHTML = "";
   //create grid
