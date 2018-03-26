@@ -9,12 +9,8 @@ $('#sizePicker').submit(function(event) {
   makeGrid(gridRows, gridCols)
 });
 
-// When color is submitted by the user, call set color var
-$('#colorPicker').submit(function() {
+// set color var
   let color = $('#colorPicker').val();
-  console.log("color selected: " + color);
-  return color;
-});
 
 /*Takes user input for grid dimensions as arguments,
 appends table to body of index.html*/
@@ -37,7 +33,6 @@ function makeGrid(gridRows, gridCols) {
 
 
 //listener for every 'td', change td color to colorPicker assignment
-$('td').click(function() {
-  console.log("cell selected, color chosen: " + color);
-  this.fill(color);
+$("#pixelCanvas").on('click', 'td', function(event) {
+  $(event.target).css("background-color", color);
 });
