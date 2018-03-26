@@ -1,47 +1,50 @@
 //Variables
-let sizePicker = $('#sizePicker');
-let colorPicker = $('#colorPicker');
-let pixelCanvas = $('#pixelCanvas');
+const sizePicker = $('#sizePicker');
+const colorPicker = $('#colorPicker');
+const pixelCanvas = $('#pixelCanvas');
 let color = "#000000";
 
 
 //Event listeners
-// When size is submitted by the user, call makeGrid, passing in user input
+//When size is submitted by the user, call makeGrid, passing in user input
 sizePicker.submit(function(event) {
   //supress default action of form submission, to block page reloading
   event.preventDefault();
   //set user input to gridCols and gridRows vars
-  let gridCols = $('#inputWeight').val();
-  let gridRows = $('#inputHeight').val();
-  makeGrid(gridRows, gridCols)
+  const gridCols = $('#inputWeight').val();
+  const gridRows = $('#inputHeight').val();
+  makeGrid(gridRows, gridCols);
 });
 
-//update color var when user dismisses color picker
+//When user dismisses color picker, change color value
 colorPicker.change(function() {
   color = colorPicker.val();
 });
 
-//change td color to chosen color assignment
+//When user clicks on a cell, change that cell's background color to color value
 pixelCanvas.on('click', 'td', function(event) {
-  $(this).css("background-color", color);
+  $(this).css('background-color', color);
 });
 
 
 //Functions
-/*Takes user input for grid dimensions as arguments,
-appends table to body of index.html*/
+/**
+* @description Creates grid based on user input, appends table to body
+* @param {number} gridRows
+* @param  {number} gridCols
+*/
 function makeGrid(gridRows, gridCols) {
   //clear any existing grid
   pixelCanvas.empty();
   //establish local var (string) to later append to body of page
-  let gridHTML = "";
+  let gridHTML = '';
   //build HTML string for grid
   for (let r = 0; r < gridRows; r++) {
-    gridHTML += "<tr>";
+    gridHTML += '\n<tr>';
     for (let c = 0; c < gridCols; c++) {
-      gridHTML += "<td></td>";
+      gridHTML += '\n<td></td>';
     };
-    gridHTML += "</tr>\n";
+    gridHTML += '</tr>';
   };
   //add completed grid to body of index.html
   pixelCanvas.append(gridHTML);
